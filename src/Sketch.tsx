@@ -5,7 +5,7 @@ import { InstancedMesh } from "three"
 import { fragment } from "./shaders/fragment"
 import { vertex } from "./shaders/vertex"
 
-const numberOfRings = 500
+const numberOfRings = 200
 
 const createAttribute = (length: number, fn: any) =>
   Float32Array.from({ length: numberOfRings }, fn)
@@ -20,17 +20,17 @@ const Sketch = () => {
       const theta = (i / numberOfPoint) * Math.PI * 2
 
       curvePoints.push(
-        new THREE.Vector3().setFromSphericalCoords(2, Math.PI / 2, theta)
+        new THREE.Vector3().setFromSphericalCoords(4, Math.PI / 2, theta)
       )
     }
 
     const curve = new THREE.CatmullRomCurve3(curvePoints)
     //@ts-ignore
-    curve.closed = true
+
     //@ts-ignore
     curve.tension = 0.7
 
-    const tube = new THREE.TubeBufferGeometry(curve, 100, 0.005, 8, false)
+    const tube = new THREE.TubeBufferGeometry(curve, 1000, 0.01, 8, false)
 
     const geometry = new THREE.InstancedBufferGeometry()
     geometry.index = tube.index

@@ -11,8 +11,8 @@ export const fragment = glsl`
         float alpha = smoothstep(wave - 0.05, wave, vUv.x) + 1.0 - step(wave, vUv.x); 
         alpha = alpha - 1.0; 
    
-        if(alpha < 0.1) discard; 
+        alpha = max(alpha, 0.05);
 
-        gl_FragColor = vec4(vec3(1.0, 1.0, 1.0), alpha);
+        gl_FragColor = vec4(vec3(0.0, 0.58, 1.0), alpha);
     }
 `
